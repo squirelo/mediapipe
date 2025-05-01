@@ -8,6 +8,27 @@ build --jobs 128
 build --define='absl=1'  # for gtest
 build --enable_platform_specific_config
 
+# Platform configuration
+build --platforms=//platforms:windows_x86_64
+
+# Enable optimization by default
+build -c opt
+
+# Enable the CC toolchain resolution
+build --incompatible_enable_cc_toolchain_resolution
+
+# Don't use @bazel_tools//platforms
+build --noincompatible_use_platforms_repo_for_constraints
+
+# Skip Android/iOS tools for Windows builds
+build --define=no_android_sdk=1
+build --define=no_ios_sdk=1
+
+# Platform configuration
+build:windows --platforms=//platforms:windows
+build:linux --platforms=//platforms:linux
+build:macos --platforms=//platforms:macos
+
 # Enable stack traces
 test --test_env="GTEST_INSTALL_FAILURE_SIGNAL_HANDLER=1"
 

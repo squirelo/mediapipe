@@ -2,6 +2,15 @@ workspace(name = "mediapipe")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
+# Add platforms repository - required for platform constraints
+http_archive(
+    name = "platforms",
+    urls = [
+        "https://github.com/bazelbuild/platforms/releases/download/0.0.6/platforms-0.0.6.tar.gz",
+    ],
+    sha256 = "5308fc1d8865406a49427ba24a9ab53087f17f5266a7aabbfc28823f3916e1ca",
+)
+
 http_archive(
     name = "bazel_skylib",
     type = "tar.gz",
@@ -257,13 +266,14 @@ http_archive(
 )
 
 # You may run setup_android.sh to install Android SDK and NDK.
-android_ndk_repository(
-    name = "androidndk",
-)
-
-android_sdk_repository(
-    name = "androidsdk",
-)
+# Commented out for Windows builds
+#android_ndk_repository(
+#    name = "androidndk",
+#)
+#
+#android_sdk_repository(
+#    name = "androidsdk",
+#)
 
 # iOS basic build deps.
 

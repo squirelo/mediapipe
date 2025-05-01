@@ -14,4 +14,31 @@
 
 licenses(["notice"])
 
+package(default_visibility = ["//visibility:public"])
+
 exports_files(["LICENSE"])
+
+# Define local platform configurations to handle the Bazel platforms issue
+platform(
+    name = "windows_platform",
+    constraint_values = [
+        "@bazel_tools//platforms:windows",
+        "@bazel_tools//platforms:x86_64",
+    ],
+)
+
+platform(
+    name = "linux_platform",
+    constraint_values = [
+        "@bazel_tools//platforms:linux",
+        "@bazel_tools//platforms:x86_64",
+    ],
+)
+
+platform(
+    name = "macos_platform",
+    constraint_values = [
+        "@bazel_tools//platforms:osx",
+        "@bazel_tools//platforms:x86_64",
+    ],
+)

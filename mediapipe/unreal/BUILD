@@ -48,6 +48,10 @@ cc_binary(
 	srcs = ["ump_dll.cc"],
 	defines = ["UMP_EXPORTS"],
 	linkshared = 1,
+	target_compatible_with = [
+		"@platforms//os:windows",
+		"@platforms//cpu:x86_64",
+	],
 	deps = [
 		":ump_core",
 	],
